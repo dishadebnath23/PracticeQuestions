@@ -32,7 +32,7 @@ Give one practical use case for each.
 <? super Integer> can be used when adding integer values into a collection that accepts integers or their parent types.
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Q2. Java introduced records to simplify data-carrying classes.
 
 What problems do records solve compared to traditional POJOs?
@@ -44,7 +44,8 @@ When would you not use a record?
 Records should not be used when the class needs to be mutable, when complex business logic is required, or when inheritance from another class is needed. Records are best suited for simple data holder classes.
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Q3. What is a functional interface?
 
 A functional interface is an interface that contains exactly one abstract method. It is mainly used to support lambda expressions in Java.
@@ -67,7 +68,8 @@ Runnable r = () -> System.out.println("Running");
 
 The lambda expression is shorter, cleaner, and easier to understand compared to the anonymous class.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 Q4. What is a Stream in Java?
 
@@ -87,7 +89,7 @@ Why are streams considered lazy?
 
 Streams are considered lazy because intermediate operations are not executed until a terminal operation is invoked. This improves performance by avoiding unnecessary processing.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 Q5. Given a list of employee objects.
 
