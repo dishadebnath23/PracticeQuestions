@@ -1,0 +1,113 @@
+Practice Questions – Day 3 (Java Latest Features)
+
+This document contains my practice answers for Day 3, focusing on modern Java features such as generics, records, functional interfaces, streams, and lambda expressions. Each concept is explained with practical reasoning and interview-oriented examples.
+
+Q1. You are writing a utility method that processes a collection of numeric values.
+
+How would you restrict the generic type to only numbers?
+
+To restrict the generic type to numeric values, I would use bounded generics using the Number class. This ensures that only numeric data types such as Integer, Double, or Float are allowed and prevents invalid usage at compile time.
+
+Example:
+class Utility {
+    public <T extends Number> void process(List<T> values) {
+        // processing logic
+    }
+}
+
+Explain when to use <? extends Number> vs <? super Integer>.
+
+<? extends Number> is used when we only want to read values from a collection. It allows flexibility because the collection can contain any subclass of Number.
+
+<? super Integer> is used when we want to add Integer values to a collection. The collection can be of type Integer, Number, or Object.
+
+A simple rule is:
+extends is for reading
+super is for writing
+
+Give one practical use case for each.
+
+<? extends Number> can be used when calculating sum or average from a list of numbers.
+
+<? super Integer> can be used when adding integer values into a collection that accepts integers or their parent types.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q2. Java introduced records to simplify data-carrying classes.
+
+What problems do records solve compared to traditional POJOs?
+
+Records remove a lot of boilerplate code such as getters, constructors, equals(), hashCode(), and toString() methods. They provide a concise way to create immutable data objects and improve readability and maintainability of code.
+
+When would you not use a record?
+
+Records should not be used when the object needs to be mutable, when complex business logic is involved, or when inheritance from another class is required. Records are best suited for simple data holder classes.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q3. What is a functional interface?
+
+A functional interface is an interface that contains exactly one abstract method. It is mainly used to support lambda expressions in Java.
+
+Name two built-in functional interfaces.
+
+Two commonly used functional interfaces are Predicate and Function.
+
+Show how a lambda expression improves readability compared to an anonymous class.
+
+Using anonymous class:
+Runnable r = new Runnable() {
+    public void run() {
+        System.out.println("Running");
+    }
+};
+
+Using lambda expression:
+Runnable r = () -> System.out.println("Running");
+
+The lambda expression is shorter, cleaner, and easier to understand.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q4. What is a Stream in Java?
+
+A Stream represents a sequence of elements that allows functional-style operations such as filtering, mapping, and reducing.
+
+How is it different from a collection?
+
+A collection stores data, whereas a stream processes data. Streams do not store elements and do not modify the original collection.
+
+Explain the difference between intermediate and terminal operations.
+
+Intermediate operations return a stream and are lazy in nature, such as filter() and map().
+
+Terminal operations produce a result or side effect and trigger execution, such as forEach(), collect(), or count().
+
+Why are streams considered lazy?
+
+Streams are lazy because intermediate operations are not executed until a terminal operation is called. This helps improve performance by avoiding unnecessary processing.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q5. Given a list of employee objects.
+
+Which stream operation would you use to filter employees by department?
+
+The filter() operation is used to select employees belonging to a specific department.
+
+employees.stream()
+         .filter(e -> e.getDepartment().equals("IT"));
+
+How would you transform employee names to uppercase?
+
+The map() operation is used to transform employee names.
+
+employees.stream()
+         .map(e -> e.getName().toUpperCase());
+
+Which collector would you use to group employees by department?
+
+Collectors.groupingBy() is used to group employees based on department.
+
+employees.stream()
+         .collect(Collectors.groupingBy(Employee::getDepartment));
